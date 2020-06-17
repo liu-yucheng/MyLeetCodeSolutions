@@ -31,3 +31,32 @@ class ListNode:
             r += str(n.val) + " -> "
             n = n.next
         return r
+
+
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        if head is None:
+            return None
+        if k == 0:
+            return head
+        length = 0
+        cur = head
+        while cur is not None:
+            length += 1
+            cur = cur.next
+        if length == 1:
+            return head
+        tarIdx = length - k % length
+        tarIdx %= length
+        if tarIdx == 0:
+            return head
+        newTail = head
+        for _ in range(tarIdx - 1):
+            newTail = newTail.next
+        newHead = newTail.next
+        oldTail = newHead
+        while oldTail.next is not None:
+            oldTail = oldTail.next
+        newTail.next = None
+        oldTail.next = head
+        return newHead
