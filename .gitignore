@@ -55,3 +55,7 @@
 
 # PyBuilder
 **/target/
+
+
+#Added by cargo
+**/target/
